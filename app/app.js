@@ -3,12 +3,10 @@ const path = require('path');
 const helmet = require('helmet');
 const xss = require('xss-clean');
 const cors = require('cors');
-const config = require('config');
+const config = require('../config');
 const logger=require('./utils/logger');
 const indexRouter=require('./routes')
-const Dotenv = require('dotenv');
-Dotenv.config({ silent: true });
-const port = process.env.PORT
+const port = config.port
 const db=require('./db/config')
 const rateLimiter = require('./middlewares/ratelimiter.middleware');
 
