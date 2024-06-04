@@ -24,4 +24,8 @@ module.exports = {
 		BAD_GATEWAY: 502,
 		SERVICE_UNAVAILABLE: 503
 	},
+	JWT: {
+		SECRET_KEY: process.env.SECRET_KEY ,
+		EXPIRY: process.env.JWT_EXPIRY
+	},
 }

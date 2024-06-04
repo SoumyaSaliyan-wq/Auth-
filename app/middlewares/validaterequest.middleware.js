@@ -56,6 +56,8 @@ module.exports.validateBody = (schema, property) => {
             next();
         } else {
             const { details } = error;
+            console.log(details)
+
             const message = details.map(i => i.message).join(',');
 
             return responseHelper.badRequestError(res, message);
@@ -87,6 +89,7 @@ module.exports.validateQuery = (schema, property) => {
             next();
         } else {
             const { details } = error;
+            console.log(details)
             const message = details.map(i => i.message).join(',');
 
             return responseHelper.badRequestError(res, message);

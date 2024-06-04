@@ -7,5 +7,17 @@ module.exports = {
 		RESOURCE_NOT_FOUND: 'Resource not found.',
 		SERVER_ERROR: 'Something went wrong, please try again later.',
 		UNAUTHORISED_ACCESS: 'You are not Authorised to access this resource. '
+	},
+	userMessages:{
+		DUPLICATE: 'User already exists with this phone number',
+		CREATE_ERROR:'User Creation Failed',
+		CREATE_SUCCESS:'User created successfully',
+		NOT_FOUND:'User not found',
+		INVALID_CREDENTIALS:'Invalid credentials',
+		LOGIN_SUCCESS:'User logged in successfully',
+		FETCH_SUCCESS:'Users fetched successfully'
+	},
+	jwt:{
+		INVALID_AUTHORIZATION:'Invalid Authorization'
 	}
 }
