@@ -1,0 +1,36 @@
+{
+  "name": "node-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "lint": "eslint 'src/**/*.js' --fix",
+    "format": "prettier-eslint 'server/**/*.{js,json}' --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoumyaSaliyan-wq/aubergine.git"
+  },
+  "keywords": [
+    "ls"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoumyaSaliyan-wq/aubergine/issues"
+  },
+  "homepage": "https://github.com/SoumyaSaliyan-wq/aubergine#readme",
+  "dependencies": {
+    "app-root-path": "^3.1.0",
+    "config": "^3.3.11",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "mysql2": "^3.10.0",
+    "sequelize": "^6.37.3",
+    "winston-daily-rotate-file": "^5.0.0",
+    "xss-clean": "^0.1.4"
+  }
+}
