@@ -15,7 +15,9 @@ module.exports = {
 		NOT_FOUND:'User not found',
 		INVALID_CREDENTIALS:'Invalid credentials',
 		LOGIN_SUCCESS:'User logged in successfully',
-		FETCH_SUCCESS:'Users fetched successfully'
+		FETCH_SUCCESS:'Users fetched successfully',
+		UPDATE_ERROR:'No changes to update',
+		UPDATE_SUCCESS:'User Details updated successfully'
 	},
 	jwt:{
 		INVALID_AUTHORIZATION:'Invalid Authorization'

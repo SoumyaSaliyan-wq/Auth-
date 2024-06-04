@@ -3,9 +3,7 @@ const userService=require('./users.service')
 const responseHelper=require('../../helpers/response.helper')
 const responseMessageHelper=require('../../helpers/response_message.helper')
 const jwtUtil=require('../../utils/jwt')
-module.exports.test=async(req,res)=>{
-    return res.send("Hello World")
-}
+
 /**
  * 
  * @param {*} req 
@@ -78,16 +76,38 @@ module.exports.createUser = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-module.exports.updateUser=(req,res)=>{
-    res.send("Hello World")
+module.exports.updateUser=async(req,res)=>{
+    try{
+        logger.info("Updating user request")
+        let updateUserResult=await userService.updateUser(req.body,{id:req.params.user_id})
+        if(!updateUserResult)
+            return responseHelper.accepted(res,responseMessageHelper.userMessages.UPDATE_ERROR)
+
+        return responseHelper.success(res,responseMessageHelper.userMessages.UPDATE_SUCCESS,req.body)
+
+    }
+    catch (error) {
+        logger.error(`updateUser Error ${error.message}`)
+        return responseHelper.serverError(res, responseMessageHelper.errorMessages.SERVER_ERROR)
+    }
 }
 /**
  * 
  * @param {*} req 
  * @param {*} res 
  */
-module.exports.getUser=(req,res)=>{
-    res.send("Hello World")
+module.exports.getUser=async(req,res)=>{
+    try{
+        logger.info("getUser request")
+        let findUserResult=await userService.findUser({id:req.params.user_id})
+        if(!findUserResult)
+            return responseHelper.badRequestError(res,responseMessageHelper.userMessages.NOT_FOUND)
+        return responseHelper.success(res,responseMessageHelper.userMessages.FETCH_SUCCESS,findUserResult)
+    }
+    catch (error) {
+        logger.error(`getUser Error ${error.message}`)
+        return responseHelper.serverError(res, responseMessageHelper.errorMessages.SERVER_ERROR,findUserResult)
+    }
 }
 /**
  * 

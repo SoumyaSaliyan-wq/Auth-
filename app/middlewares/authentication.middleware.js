@@ -1,7 +1,7 @@
 const jwtUtil=require('../utils/jwt')
 const responseHelper=require('../helpers/response.helper')
 const responseMessageHelper=require('../helpers/response_message.helper')
-module.exports.isAuthenticated=async(req,res,next)=>{
+const isAuthenticated=async(req,res,next)=>{
     try{
 
         const { headers } = req;
@@ -20,11 +20,13 @@ module.exports.isAuthenticated=async(req,res,next)=>{
         if (!success) {
             return responseHelper.authorizationError(res,  responseMessageHelper.jwt.INVALID_AUTHORIZATION);
         }
-        req.user = user;
-	    return next();
+        req.token = token;	 
+        return next();
     }
     catch(error){
+        console.log(error);
         return responseHelper.serverError(res,responseMessageHelper.errorMessages.SERVER_ERROR)
     }
 
 }
+module.exports = isAuthenticated
