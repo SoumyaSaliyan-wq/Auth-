@@ -4,6 +4,7 @@ const users = db.sequelize.define(
     'users', {
     id: { type: DataTypes.BIGINT, autoIncrement: true, primaryKey: true },
     first_name:{ type: DataTypes.STRING(100) },
+    password: { type: DataTypes.TEXT, min: 8 },
     last_name:{ type: DataTypes.STRING(100) },
     phone_number:{type:DataTypes.STRING(100),allowNull:false},
     email:{type:DataTypes.STRING(100),allowNull:false},
