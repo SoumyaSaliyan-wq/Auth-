@@ -34,33 +34,63 @@ const responseHelper = require('../helpers/response.helper');
 //         // console.log(req.body,schema)
 //     const { error } = Joi.validate(req.body, schema); 
 //     const valid = error == null; 
-    
+
 //     if (valid) { 
 //       next(); 
 //     } else { 
 //       const { details } = error; 
 //       const message = details.map(i => i.message).join(',');
-   
+
 //       console.log("error", message); 
 //      res.status(422).json({ error: message }) } 
 //     } 
 //   } 
 // module.exports=validateMiddleware
 
-module.exports.validateBody = (schema, property) => { 
-  return (req, res, next) => { 
-    console.log(req.body)
-    const { error, value } = schema.validate(req.body);
-  const valid = error == null; 
-  
-  if (valid) { 
-    next(); 
-  } else { 
-    const { details } = error; 
-    const message = details.map(i => i.message).join(',');
- 
-    console.log("error Here", message); 
-    return responseHelper.badRequestError(res,message);
-  }
-} 
-} 
+module.exports.validateBody = (schema, property) => {
+    return (req, res, next) => {
+        const { error, value } = schema.validate(req.body);
+        const valid = error == null;
+
+        if (valid) {
+            next();
+        } else {
+            const { details } = error;
+            const message = details.map(i => i.message).join(',');
+
+            return responseHelper.badRequestError(res, message);
+        }
+    }
+}
+
+module.exports.validateParam = (schema, property) => {
+    return (req, res, next) => {
+        const { error, value } = schema.validate(req.params);
+        const valid = error == null;
+
+        if (valid) {
+            next();
+        } else {
+            const { details } = error;
+            const message = details.map(i => i.message).join(',');
+
+            return responseHelper.badRequestError(res, message);
+        }
+    }
+}
+module.exports.validateQuery = (schema, property) => {
+    return (req, res, next) => {
+        const { error, value } = schema.validate(req.query);
+        const valid = error == null;
+
+        if (valid) {
+            next();
+        } else {
+            const { details } = error;
+            const message = details.map(i => i.message).join(',');
+
+            return responseHelper.badRequestError(res, message);
+        }
+    }
+}
+
