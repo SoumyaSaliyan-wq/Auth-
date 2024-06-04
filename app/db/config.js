@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const config = require('../../config');
-const database = config.db.database
+const database = config.db.name
 const username = config.db.username
 const password = config.db.password
 const db={}
@@ -25,10 +25,10 @@ sequelize.authenticate().then(() => {
    console.error('Unable to connect to the database: ', error);
 });
 
-// sequelize.sync().then(() => {
-//    console.log('Table created successfully!');
-// }).catch((error) => {
-//    console.error('Unable to create table : ', error);
-// });
+sequelize.sync().then(() => {
+   console.log('Table created successfully!');
+}).catch((error) => {
+   console.error('Unable to create table : ', error);
+});
 db.sequelize=sequelize
 module.exports = db;

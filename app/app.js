@@ -9,7 +9,8 @@ const indexRouter=require('./routes')
 const port = config.port
 const db=require('./db/config')
 const rateLimiter = require('./middlewares/ratelimiter.middleware');
-
+const users=require('./models/users.model')
+const users_settings = require('./models/users_settings.model');
 
 const app = express();
 app.use(helmet());
