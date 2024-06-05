@@ -1,5 +1,5 @@
 const users = require('../../models/users.model')
-
+const users_settings=require('../../models/users_settings.model')
 module.exports.createUser = async params => {
     try {
         params.password = users.hashPassword(params.password);
@@ -19,9 +19,9 @@ module.exports.validateUserPassword=async(password,dbpassword)=>{
         throw new Error(error)
     }
 }
-module.exports.findUser = async (params) => {
+module.exports.findUser = async (params,attributes) => {
     try {
-        const data = await users.findOne({ where: { ...params } });
+        const data = await users.findOne({ where: { ...params }, ...(attributes && { attributes }) });
         return data;
     }
     catch (error) {
@@ -62,4 +62,29 @@ module.exports.updateUser = async (updateParams,whereParams)=>{
     {
         throw new Error(error)
     }  
+}
+
+module.exports.findUserSetting = async (params, attributes) => {
+    try {
+        const data = await users.findOne({
+            where: { ...params },
+            ...(attributes && { attributes }),
+            include: [{
+                model: users_settings,
+                as: 'user_settings_info',
+                attributes:['profile_image']
+            }
+            ]
+        });
+        return data;
+    }
+    catch (error) {
+        throw new Error(error)
+    }
+
+}
+module.exports.deleteUser=async(params)=>{
+	const data=await users.destroy({where:{...params}}
+	)
+	return data
 }

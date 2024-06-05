@@ -15,6 +15,7 @@ const users = db.sequelize.define(
     created_by: DataTypes.BIGINT,
     updated_by: DataTypes.BIGINT,
     deleted_by: DataTypes.BIGINT,
+    deleted_at:DataTypes.STRING
 }, {
     paranoid: true,
     timestamps: true,
@@ -23,7 +24,8 @@ const users = db.sequelize.define(
     createdBy:'created_by',
     updatedBy:'updated_by',
     deletedBy:'deleted_by',
-    underscored: true
+    underscored: true,
+    deletedAt: 'deleted_at'
 });
 users.hashPassword = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);

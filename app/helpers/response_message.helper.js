@@ -17,7 +17,9 @@ module.exports = {
 		LOGIN_SUCCESS:'User logged in successfully',
 		FETCH_SUCCESS:'Users fetched successfully',
 		UPDATE_ERROR:'No changes to update',
-		UPDATE_SUCCESS:'User Details updated successfully'
+		UPDATE_SUCCESS:'User Details updated successfully',
+		DELETE_ERROR:'Delete user failed',
+		DELETE_SUCCESS:'User deleted successfully'
 	},
 	userSettingMessages:{
 		CREATE_ERROR:'Profile Picture Update Failed',

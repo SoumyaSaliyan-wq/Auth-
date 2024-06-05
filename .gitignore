@@ -10,4 +10,4 @@ package-lock.json
 logs
 
 .env
-public/*
+public/profile_picture/*

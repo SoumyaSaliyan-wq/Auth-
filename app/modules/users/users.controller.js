@@ -6,8 +6,8 @@ const jwtUtil=require('../../utils/jwt')
 
 /**
  * 
- * @param {*} req 
- * @param {*} res 
+ * @param {req.body} req 
+ * @param {email,phone_number,address,first_name,last_name} res 
  */
 module.exports.loginUser=async(req,res)=>{
     try{
@@ -48,7 +48,7 @@ module.exports.createUser = async (req, res) => {
     try {
         logger.info("createUser Request:")
         let { phone_number } = req.body
-        let findUserResult = await userService.findUser({ phone_number })
+        let findUserResult = await userService.findUser({ phone_number },['phone_number'])
         if (findUserResult)
             return responseHelper.badRequestError(res, responseMessageHelper.userMessages.DUPLICATE)
         let createUserResult = await userService.createUser(req.body)
@@ -73,7 +73,7 @@ module.exports.createUser = async (req, res) => {
 }
 /**
  * 
- * @param {*} req 
+ * @param {user_id} req 
  * @param {*} res 
  */
 module.exports.updateUser=async(req,res)=>{
@@ -93,15 +93,16 @@ module.exports.updateUser=async(req,res)=>{
 }
 /**
  * 
- * @param {*} req 
- * @param {*} res 
+ * @param {user_id} req 
+ * @param {email,phone_number,first_name,last_name} res 
  */
 module.exports.getUser=async(req,res)=>{
     try{
         logger.info("getUser request")
-        let findUserResult=await userService.findUser({id:req.params.user_id})
+        let findUserResult=await userService.findUserSetting({id:req.params.user_id},['email','first_name','last_name','phone_number','address'])
         if(!findUserResult)
             return responseHelper.badRequestError(res,responseMessageHelper.userMessages.NOT_FOUND)
+       
         return responseHelper.success(res,responseMessageHelper.userMessages.FETCH_SUCCESS,findUserResult)
     }
     catch (error) {
@@ -111,8 +112,8 @@ module.exports.getUser=async(req,res)=>{
 }
 /**
  * 
- * @param {*} req 
- * @param {*} res 
+ * @param {page,limit} req 
+ * @param {[]} res 
  */
 module.exports.getAllUser=async(req,res)=>{
     try{
@@ -148,9 +149,25 @@ module.exports.getAllUser=async(req,res)=>{
 }
 /**
  * 
- * @param {*} req 
+ * @param {user_id} req 
  * @param {*} res 
  */
-module.exports.deleteUser=(req,res)=>{
-    res.send("Hello World")
+module.exports.deleteUser=async(req,res)=>{
+    try{
+        logger.info("deleteUser request")
+        let {user_id}=req.params
+        console.log(user_id)
+        let finduserresult=await userService.findUser({id:user_id})
+        if(!finduserresult)
+            return responseHelper.badRequestError(res,responseMessageHelper.userMessages.NOT_FOUND)
+        let deleteUserresult=await userService.deleteUser({id:user_id})
+        if(!deleteUserresult)
+            return responseHelper.badRequestError(res,responseMessageHelper.userMessages.DELETE_ERROR)
+        return responseHelper.success(res,responseMessageHelper.userMessages.DELETE_SUCCESS,{})
+
+    }
+   catch (error) {
+        logger.error(`deleteUser Error ${error.message}`)
+        return responseHelper.serverError(res, responseMessageHelper.errorMessages.SERVER_ERROR)
+    }
 }
