@@ -28,4 +28,5 @@ module.exports = {
 		SECRET_KEY: process.env.SECRET_KEY ,
 		EXPIRY: process.env.JWT_EXPIRY
 	},
+	IMG_BASE_URL: process.env.IMG_BASE_URL || 'localhost'
 }

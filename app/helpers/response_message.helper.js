@@ -19,6 +19,12 @@ module.exports = {
 		UPDATE_ERROR:'No changes to update',
 		UPDATE_SUCCESS:'User Details updated successfully'
 	},
+	userSettingMessages:{
+		CREATE_ERROR:'Profile Picture Update Failed',
+		CREATE_SUCCESS:'Profile Picture updated successfully',
+
+
+	},
 	jwt:{
 		INVALID_AUTHORIZATION:'Invalid Authorization'
 	}

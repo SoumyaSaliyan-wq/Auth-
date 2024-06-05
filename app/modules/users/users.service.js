@@ -56,7 +56,7 @@ module.exports.findUserCount = async (params) => {
 module.exports.updateUser = async (updateParams,whereParams)=>{
     try{
         const data = await users.update({...updateParams},{where:{...whereParams}})
-        return data-0;
+        return data[0];
     }
     catch(error)
     {
