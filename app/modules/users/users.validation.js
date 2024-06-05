@@ -16,7 +16,9 @@ const schema ={
         first_name: Joi.string().min(3).optional().messages({'string.min': 'Minimum 3 characters required'}),
         last_name: Joi.string().min(3).optional().messages({'string.min': 'Minimum 3 characters required'}),
         email: Joi.string().min(3).email({ tlds: { allow: false } }).messages({'string.email':'Please enter a valid email id','string.min': 'Minimum 10 characters required'}),
-        gender: Joi.string().optional().allow(...genderEnums).messages({ 'any.only':'Gender must me one of these [Male, Female, Other]'})
+        gender: Joi.string().optional().allow(...genderEnums).messages({ 'any.only':'Gender must me one of these [Male, Female, Other]'}),
+        address:Joi.string().max(100).optional().messages({'string.max':'Maximun 100 characters allowed'}),
+
       }),
       deleteUser:Joi.object().keys({ 
         user_id: Joi.number().required(),

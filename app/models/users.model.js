@@ -8,7 +8,7 @@ const users = db.sequelize.define(
     first_name: { type: DataTypes.STRING(100) },
     password: { type: DataTypes.TEXT, min: 8 },
     last_name: { type: DataTypes.STRING(100) },
-    phone_number: { type: DataTypes.STRING(100), allowNull: false,unique:true},
+    phone_number: { type: DataTypes.STRING(100), allowNull: false},
     email: { type: DataTypes.STRING(100), allowNull: false},
     address: { type: DataTypes.STRING(100) },
     is_active: { type: DataTypes.TINYINT, defaultValue: false },

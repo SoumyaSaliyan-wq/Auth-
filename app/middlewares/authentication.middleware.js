@@ -16,11 +16,13 @@ const isAuthenticated=async(req,res,next)=>{
         }
     
         const jwtTokenData = jwtUtil.validateToken(token);
-        const { success } = jwtTokenData;
+        const { success ,data} = jwtTokenData;
         if (!success) {
             return responseHelper.authorizationError(res,  responseMessageHelper.jwt.INVALID_AUTHORIZATION);
         }
-        req.token = token;	 
+        console.log(data)
+        req.token = token;
+        req.user_id=data.id	 
         return next();
     }
     catch(error){

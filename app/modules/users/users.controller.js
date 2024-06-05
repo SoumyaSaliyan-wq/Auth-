@@ -48,7 +48,8 @@ module.exports.createUser = async (req, res) => {
     try {
         logger.info("createUser Request:")
         let { phone_number } = req.body
-        let findUserResult = await userService.findUser({ phone_number },['phone_number'])
+        let findUserResult = await userService.findUser({ phone_number })
+        console.log(findUserResult)
         if (findUserResult)
             return responseHelper.badRequestError(res, responseMessageHelper.userMessages.DUPLICATE)
         let createUserResult = await userService.createUser(req.body)
@@ -79,7 +80,8 @@ module.exports.createUser = async (req, res) => {
 module.exports.updateUser=async(req,res)=>{
     try{
         logger.info("Updating user request")
-        let updateUserResult=await userService.updateUser(req.body,{id:req.params.user_id})
+        let updateUserResult=await userService.updateUser({...req.body,updated_by:req.user_id},{id:req.params.user_id})
+        console.log(updateUserResult)
         if(!updateUserResult)
             return responseHelper.accepted(res,responseMessageHelper.userMessages.UPDATE_ERROR)
 
