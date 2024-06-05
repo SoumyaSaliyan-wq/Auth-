@@ -32,11 +32,11 @@
 - POST {{SERVER}}/user/login - User Login
 
         curl --location 'localhost:3011/user/login' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
+        --header 'Content-Type: application/json' \
+        --data-raw '{
         "email":"acac@gmal.com",
         "password":"12345678"
-    }'
+        }'
 
 - GET {{SERVER}}/user/?page=1&limit=1 - List All Users
 
