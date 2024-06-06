@@ -6,10 +6,11 @@
     - Navigate to the root folder and install npm packages using command  "npm i "
     - Configure .env variables as per the deployment environment [development, production,staging].Please refer the sample
     env file for more information
+    - Configure PORT,DB details,JWT settings
 
 # Development
 
-- To run the process locally "npm start"
+- To run the process locally "npm start" .Server will run at localhost:[port]
 
 # Production
 
