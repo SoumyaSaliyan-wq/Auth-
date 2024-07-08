@@ -2,7 +2,7 @@
 
 # Installation
 
-    - git clone https://github.com/SoumyaSaliyan-wq/aubergine.git
+    - git clone https://github.com/SoumyaSaliyan-wq/Simple-Auth.git
     - Navigate to the root folder and install npm packages using command  "npm i "
     - Configure .env variables as per the deployment environment [development, production,staging].Please refer the sample
     env file for more information
